@@ -73,5 +73,19 @@ namespace HairSalonApp.Tests
       //Assert
       Assert.AreEqual(testClient, foundClient);
     }
+
+    [TestMethod]
+    public void Edit_UpdatesClientInDatabase_String()
+    {
+      Client testClient = new Client("Steve", 2067130144, 1, 1);
+      testClient.Save();
+      Client secondClient = new Client ("Jeff", 2067140144, 1, 1);
+
+      testClient.Edit("Jeff", 2067140144);
+
+      // string result = Client.Find(testClient.GetId()).GetDescription();
+
+      Assert.AreEqual(testClient, secondClient);
+    }
 }
 }
