@@ -184,6 +184,35 @@ namespace HairSalonApp.Models
      return newStylist;
    }
 
+   public void Edit(string newName, int newPhoneNumber, string newEmail)
+   {
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+     var cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"UPDATE stylists SET name = @newName, phone_number = @phone_number, email = @email WHERE id = @searchId;";
+
+     MySqlParameter searchId = new MySqlParameter("@searchId", _id);
+     cmd.Parameters.Add(searchId);
+
+     MySqlParameter name = new MySqlParameter("@newName", newName);
+     cmd.Parameters.Add(name);
+
+     MySqlParameter phoneNumber = new MySqlParameter("@phone_number", newPhoneNumber);
+     cmd.Parameters.Add(phoneNumber);
+
+     MySqlParameter email = new MySqlParameter("@email", newEmail);
+     cmd.Parameters.Add(email);
+     cmd.ExecuteNonQuery();
+     _name = newName;
+     _phoneNumber = newPhoneNumber;
+     _email = newEmail;
+     conn.Close();
+     if (conn != null)
+     {
+       conn.Dispose();
+     }
+   }
+
     public static void DeleteAll()
     {
       MySqlConnection conn = DB.Connection();

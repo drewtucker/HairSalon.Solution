@@ -28,7 +28,7 @@ namespace HairSalonApp.Tests
     }
 
     [TestMethod]
-    public void Save_AssignsIdToObject_Id()
+    public void Save_AssignsIdToClient_Id()
     {
       //Arrange
         Client testClient = new Client("Steve", 2067130144, 1, 1);
@@ -82,8 +82,6 @@ namespace HairSalonApp.Tests
       Client secondClient = new Client ("Jeff", 2067140144, 1, 1);
 
       testClient.Edit("Jeff", 2067140144);
-
-      // string result = Client.Find(testClient.GetId()).GetDescription();
 
       Assert.AreEqual(testClient, secondClient);
     }
