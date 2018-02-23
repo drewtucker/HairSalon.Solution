@@ -28,7 +28,7 @@ A website that allows users to enter a new stylist with relevant information, su
 # In MYSQL
 > CREATE DATABASE drew_tucker;
 > USE drew_tucker;
-> CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255), phone_number INT(11), email VARCHAR(255));
+> CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255), phone_number INT(11), email VARCHAR(255), experience INT(3));
 > CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), phone_number INT(11));
 
 
