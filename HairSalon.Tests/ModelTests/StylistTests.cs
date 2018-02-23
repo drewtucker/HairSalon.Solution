@@ -42,6 +42,37 @@ namespace HairSalonApp.Tests
       CollectionAssert.AreEqual(testList, result);
     }
 
+    [TestMethod]
+    public void Save_DatabaseAssignsIdToStylist_Id()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Jim", 2067130144, "Jim@gmail.com", 4, 1);
+      testStylist.Save();
+
+      //Act
+      Stylist savedStylist = Stylist.GetAll()[0];
+
+      int result = savedStylist.GetId();
+      int testId = testStylist.GetId();
+
+      //Assert
+      Assert.AreEqual(testId, result);
+    }
+
+    [TestMethod]
+    public void Find_FindsStylistInDatabase_Stylist()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Jim", 2067130144, "Jim@gmail.com", 4, 1);
+      testStylist.Save();
+
+      //Act
+      Stylist foundStylist = Stylist.Find(testStylist.GetId());
+
+      //Assert
+      Assert.AreEqual(testStylist, foundStylist);
+    }
+
 
 }
 

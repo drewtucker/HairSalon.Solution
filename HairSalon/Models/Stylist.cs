@@ -40,6 +40,11 @@ namespace HairSalonApp.Models
 
     //GETTERS
 
+    public override int GetHashCode()
+    {
+      return this.GetId().GetHashCode();
+    }
+
     public string GetName()
     {
       return _name;
@@ -145,6 +150,40 @@ namespace HairSalonApp.Models
         conn.Dispose();
       }
     }
+
+    public static Stylist Find(int id)
+   {
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+     var cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"SELECT * FROM stylists WHERE id = (@searchId);";
+
+     MySqlParameter searchId = new MySqlParameter("@searchId", id);
+     cmd.Parameters.Add(searchId);
+
+     var rdr = cmd.ExecuteReader() as MySqlDataReader;
+     int stylistId = 0;
+     string stylistName = "";
+     int stylistNumber = 0;
+     string stylistEmail = "";
+     int stylistExperience = 0;
+
+     while(rdr.Read())
+     {
+       stylistId = rdr.GetInt32(0);
+       stylistName = rdr.GetString(1);
+       stylistNumber = rdr.GetInt32(2);
+       stylistEmail = rdr.GetString(3);
+       stylistExperience = rdr.GetInt32(4);
+     }
+     Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistEmail, stylistExperience, stylistId);
+     conn.Close();
+     if (conn != null)
+     {
+       conn.Dispose();
+     }
+     return newStylist;
+   }
 
     public static void DeleteAll()
     {
