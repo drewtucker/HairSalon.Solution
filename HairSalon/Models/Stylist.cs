@@ -23,6 +23,21 @@ namespace HairSalonApp.Models
       _id = Id;
     }
 
+    public override bool Equals(System.Object otherStylist)
+    {
+      if (!(otherStylist is Stylist))
+      {
+        return false;
+      }
+      else
+      {
+        Stylist newStylist = (Stylist) otherStylist;
+        bool idEquality = (this.GetId() == newStylist.GetId());
+        bool nameEquality = (this.GetName() == newStylist.GetName());
+        return (idEquality && nameEquality);
+      }
+    }
+
     //GETTERS
 
     public string GetName()
@@ -101,6 +116,34 @@ namespace HairSalonApp.Models
         conn.Dispose();
       }
       return allStylists;
+    }
+
+    public void Save()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO stylists (name, phone_number, email, experience, id) VALUES (@name, @phone_number, @email, @experience, @id);";
+
+      MySqlParameter name = new MySqlParameter("@name", _name);
+      cmd.Parameters.Add(name);
+      MySqlParameter phone_number = new MySqlParameter("@phone_number", _phoneNumber);
+      cmd.Parameters.Add(phone_number);
+      MySqlParameter email = new MySqlParameter("@email", _email);
+      cmd.Parameters.Add(email);
+      MySqlParameter experience = new MySqlParameter("@experience", _experience);
+      cmd.Parameters.Add(experience);
+      MySqlParameter id = new MySqlParameter("@id", _id);
+      cmd.Parameters.Add(id);
+
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+      conn.Close();
+      if(conn != null)
+      {
+        conn.Dispose();
+      }
     }
 
     public static void DeleteAll()
