@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <title>Hairy Salon</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Enter a new Stylist</h1>
+
+      </div>
+      <form action="/stylists" method="post">
+        <label for="stylist-name">Enter the Stylist's Name:</label>
+        <input id="stylist-name" type="text" name="stylist-name" placeholder="First and Last">
+        <br>
+        <label for="stylist-phone">Enter the Stylist's Phone Number:</label>
+        <input id="stylist-phone" type="text" name="stylist-phone" placeholder="Ex: 2067130144" >
+        <br>
+        <label for="stylist-email">Enter the Stylist's Email:</label>
+        <input id="stylist-email" type="text" name="stylist-email" placeholder="Ex: chuckgreen@gmail.com">
+        <br>
+        <label for="stylist-experience">How many years of Experience?:</label>
+        <input id="stylist-experience" type="text" name="stylist-experience">
+        <br>
+        <button type="submit">Submit!</button>
+
+      </form>
+    </div>
+  </body>
+</html>

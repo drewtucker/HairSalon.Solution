@@ -62,6 +62,11 @@ namespace HairSalonApp.Models
     {
       return _stylistId;
     }
+    
+    public void SetId(int newId)
+    {
+      _id = newId;
+    }
 
     //MAIN FUNCTIONS
 
