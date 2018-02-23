@@ -27,6 +27,7 @@ namespace HairSalonApp.Tests
       Assert.AreEqual(0, result);
     }
 
+
     [TestMethod]
     public void Save_SavesToDatabase_StylistList()
     {

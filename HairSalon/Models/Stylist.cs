@@ -32,9 +32,8 @@ namespace HairSalonApp.Models
       else
       {
         Stylist newStylist = (Stylist) otherStylist;
-        bool idEquality = (this.GetId() == newStylist.GetId());
         bool nameEquality = (this.GetName() == newStylist.GetName());
-        return (idEquality && nameEquality);
+        return (nameEquality);
       }
     }
 
