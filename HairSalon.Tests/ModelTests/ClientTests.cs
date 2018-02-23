@@ -28,17 +28,50 @@ namespace HairSalonApp.Tests
     }
 
     [TestMethod]
+    public void Save_AssignsIdToObject_Id()
+    {
+      //Arrange
+        Client testClient = new Client("Steve", 2067130144, 1, 1);
+        testClient.Save();
+
+      //Act
+      Client savedClient = Client.GetAll()[0];
+
+      int result = savedClient.GetId();
+      int testId = testClient.GetId();
+
+      //Assert
+      Assert.AreEqual(testId, result);
+    }
+
+    [TestMethod]
     public void GetAll_DatabaseSavesListOfAllClients_ClientList()
     {
       Client testClient = new Client("Steve", 2067130144, 1, 1);
       testClient.Save();
+      Client testClient2 = new Client("Berta", 2074258687, 2, 2);
+      testClient2.Save();
 
       //Act
       List<Client> result = Client.GetAll();
-      List<Client> testList = new List<Client>{testClient};
+      List<Client> testList = new List<Client>{testClient, testClient2};
 
       //Assert
       CollectionAssert.AreEqual(testList, result);
+    }
+
+    [TestMethod]
+    public void Find_FindsClientInDatabase_Client()
+    {
+      //Arrange
+      Client testClient = new Client("Steve", 2067130144, 1, 1);
+      testClient.Save();
+
+      //Act
+      Client foundClient = Client.Find(testClient.GetId());
+
+      //Assert
+      Assert.AreEqual(testClient, foundClient);
     }
 }
 }
