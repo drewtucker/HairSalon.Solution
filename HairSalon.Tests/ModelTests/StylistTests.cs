@@ -85,6 +85,17 @@ namespace HairSalonApp.Tests
       Assert.AreEqual(testStylist, testStylist2);
     }
 
+    [TestMethod]
+    public void Delete_DeletesStylistInDatabase_Stylist()
+    {
+      Stylist testStylist = new Stylist("Jim", 2067130144, "Jim@gmail.com", 4, 1);
+      testStylist.Save();
+      testStylist.Delete();
+      List<Stylist> testList2 = new List<Stylist> {};
+      CollectionAssert.AreEqual(testList2, Stylist.GetAll());
+
+    }
+
 
 }
 

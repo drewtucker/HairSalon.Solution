@@ -13,7 +13,7 @@ namespace HairSalonApp.Controllers
         return View();
       }
 
-      [HttpGet("/Stylist/Delete_All")]
+      [HttpGet("/stylist/delete_all")]
         public ActionResult DeleteAll()
         {
             Stylist.DeleteAll();

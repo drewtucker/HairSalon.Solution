@@ -1,3 +1,5 @@
+@using HairSalonApp.Models;
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,8 +11,17 @@
     <div class="container">
       <div class="jumbotron">
         <h1>Details for this Stylist:</h1>
-
       </div>
+        @if (Model != null)
+        {
+          <h4>@Model.GetName()</h4>
+          <h5>@Model.GetPhoneNumber()</h5>
+          <h5>@Model.GetEmail()</h5>
+          <h5>@Model.GetExperience() years experience</h5>
+        }
+
+        <a href="/stylists/delete/{id}">Delete this stylist</a>
+
     </div>
   </body>
 </html>

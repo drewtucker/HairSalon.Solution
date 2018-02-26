@@ -16,9 +16,11 @@
       {
         foreach(Stylist stylist in Stylist.GetAll())
         {
-          <h4>@stylist.GetName()</h4>
+          <a href="/stylists/details/{id}"><h4>@stylist.GetName()</h4></a>
         }
       }
+
+      <a href="/stylists/new">Add a new Stylist</a>
     </div>
   </body>
 </html>

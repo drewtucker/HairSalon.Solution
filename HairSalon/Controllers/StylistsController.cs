@@ -20,7 +20,7 @@ namespace HairSalonApp.Controllers
         return View();
       }
 
-      [HttpPost("/stylists/add")]
+      [HttpPost("/stylists")]
       public ActionResult AddStylist()
       {
         string name = Request.Form["stylist-name"];
@@ -29,7 +29,7 @@ namespace HairSalonApp.Controllers
         int experience = Int32.Parse(Request.Form["stylist-experience"]);
         Stylist newStylist = new Stylist(name, number, email, experience);
         newStylist.Save();
-        return View("stylists", newStylist);
+        return View("AllStylists", newStylist);
       }
 
       [HttpGet("/stylists/details/{id}")]
@@ -37,5 +37,13 @@ namespace HairSalonApp.Controllers
         {
             return View(Stylist.Find(id));
         }
+
+      [HttpGet("/stylists/delete/{id}")]
+      public ActionResult Delete(int id)
+      {
+        Stylist thisStylist = Stylist.Find(id);
+        thisStylist.Delete();
+        return RedirectToAction("AllStylists");
+      }
     }
 }
