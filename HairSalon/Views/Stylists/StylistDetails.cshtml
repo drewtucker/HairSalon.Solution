@@ -1,4 +1,3 @@
-@using HairSalonApp.Models;
 
 <!DOCTYPE html>
 <html>
@@ -14,13 +13,33 @@
       </div>
         @if (Model != null)
         {
-          <h4>@Model.GetName()</h4>
-          <h5>@Model.GetPhoneNumber()</h5>
-          <h5>@Model.GetEmail()</h5>
-          <h5>@Model.GetExperience() years experience</h5>
-        }
+          <h3>@Model.GetName()</h3>
+          <h4>Phone #: @Model.GetPhoneNumber()</h4>
+          <h4>Email: @Model.GetEmail()</h4>
+          <h4>@Model.GetExperience() years experience</h4>
 
-        <a href="/stylists/delete/{id}">Delete this stylist</a>
+          <h3>Clients:</h3>
+
+          @foreach(var client in Model.GetAllClients())
+          {
+            <h4><em>@client.GetName()</em></h4>
+            <h5>Phone #: @client.GetPhoneNumber()</h5>
+            <br>
+            <form action="/clients/delete/@client.GetId()" method="post"><button type="submit" name="deleteClient">Drop this Client</button></form>
+          }
+        }
+        <hr>
+        <a href="/clients/new">Add a Client</a>
+        <hr>
+        <a href="/">Back to Main</a>
+        <hr>
+
+
+        <form action="/stylists/delete/@Model.GetId()" method="post">
+          <button type="submit" name="deleteStylist">Fire this Stylist</button>
+        </form>
+        <hr>
+
 
     </div>
   </body>

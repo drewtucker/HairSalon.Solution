@@ -1,0 +1,33 @@
+@using HairSalonApp.Models;
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <title>Hairy Salon</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>All Clients</h1>
+
+      </div>
+      @if (Model != null)
+      {
+        foreach(var client in Client.GetAll())
+        {
+          <h4><strong>@client.GetName()</strong> </h4>
+          <h4>Phone #: @client.GetPhoneNumber()</h4>
+          <br>
+          <h5>Stylist: @client.GetStylist().GetName()</h5>
+          <form action="/clients/delete/@client.GetId()" method="post"><button type="submit" name="deleteClient">Delete this Client</button></form>
+          <hr>
+        }
+      }
+
+      <a href="/clients/new">Add a new Client</a>
+      <hr>
+      <a href="/stylists">Go to Stylists</a>
+    </div>
+  </body>
+</html>

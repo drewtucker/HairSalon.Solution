@@ -38,12 +38,13 @@ namespace HairSalonApp.Controllers
             return View(Stylist.Find(id));
         }
 
-      [HttpGet("/stylists/delete/{id}")]
-      public ActionResult Delete(int id)
+
+      [HttpPost("/stylists/delete/{id}")]
+      public ActionResult DeleteStylist(int id)
       {
         Stylist thisStylist = Stylist.Find(id);
         thisStylist.Delete();
         return RedirectToAction("AllStylists");
       }
-    }
+}
 }

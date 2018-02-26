@@ -16,7 +16,8 @@
       {
         foreach(Stylist stylist in Stylist.GetAll())
         {
-          <a href="/stylists/details/{id}"><h4>@stylist.GetName()</h4></a>
+          <a href="/stylists/details/@stylist.GetId()"><h4>@stylist.GetName()</h4></a>
+          <hr>
         }
       }
 
