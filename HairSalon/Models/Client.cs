@@ -62,7 +62,7 @@ namespace HairSalonApp.Models
     {
       return _stylistId;
     }
-    
+
     public void SetId(int newId)
     {
       _id = newId;
@@ -126,7 +126,7 @@ namespace HairSalonApp.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM `clients` WHERE id = (@searchId);";
+      cmd.CommandText = @"SELECT * FROM clients WHERE id = (@searchId);";
 
       MySqlParameter thisId = new MySqlParameter("@searchId", id);
       cmd.Parameters.Add(thisId);
