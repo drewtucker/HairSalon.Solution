@@ -3,11 +3,9 @@
 @{
   Layout = "_Layout";
 }
-    <div class="container">
-      <div class="jumbotron">
+
         <h1>All Clients</h1>
 
-      </div>
       @if (Model != null)
       {
         foreach(var client in Client.GetAll())
@@ -20,8 +18,4 @@
           <hr>
         }
       }
-
-      <a href="/clients/new">Add a new Client</a>
-      <hr>
-      <a href="/stylists">Go to Stylists</a>
-    </div>
+<a href="/clients/new">Add a Client</a>

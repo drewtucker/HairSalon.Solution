@@ -2,11 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>My Super Awesome Site!</title>
+    <title>Welcome to Snappy Snips</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
-    @RenderBody()
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Snappy Snips</h1>
+      </div>
+      <div id="TopNav" align="center" class="topnav">
+        <a href="/">Home</a>
+        <a href="/stylists">All Stylists</a>
+        <a href="/stylists/new">Add A Stylist</a>
+        <a href="/clients">All Clients</a>
+        <a href="/clients/new">Add a Client</a>
+        <a href="/specialties">All Specialties</a>
+        <a href="/specialties/new">Add A Specialty</a>
+      </div>
+      @RenderBody()
+    </div>
+
   </body>
 </html>

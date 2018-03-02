@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+@using HairSalonApp.Models;
+  @if (Model != null)
+  {
+    <h2>Stylists for this Specialty: @Model["selectedSpecialty"].GetSpecialty()</h2>
+    @if(Model["specialtyStylists"].Count != 0)
+    {
+      @foreach(Stylist stylist in @Model["specialtyStylists"])
+      {
+       <a href="/stylists/details/@stylist.GetId()"><li>@stylist.GetName()</li></a>
+      }
+    }
+    <hr>
+    <h4>Add a Stylist who has this Specialty:</h4>
+    <form action="/specialties/@Model["selectedSpecialty"].GetId()/stylists/new" method="post">
+      <label for="stylist-id">Select a Stylist:</label>
+      <select name="stylist-id">
+        @foreach(var stylist in @Model["allStylists"])
+        {
+          <option value="@stylist.GetId()">@stylist.GetName()</option>
+        }
+      </select>
+      <button type="submit" class="btn btn-info" name="button">Add</button>
+    </form>
+
+<hr>
+    <form action="/specialties/delete/@Model["selectedSpecialty"].GetId()" method="post">
+      <button type="submit" class="btn btn-danger" name="button">Delete this Specialty</button>
+    </form>
+  }

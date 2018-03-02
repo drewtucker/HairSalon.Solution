@@ -1,0 +1,11 @@
+@using HairSalonApp.Models;
+@{
+  Layout = "_Layout";
+}
+
+<h2>Add a Specialty:</h2>
+
+<form action="/specialties" method="post">
+  <label for="specialty">Enter a Specialty: </label>
+  <input type="text" name="specialty" required>
+  <button type="submit" class="btn btn-info" name="button">Add this Specialty</button>

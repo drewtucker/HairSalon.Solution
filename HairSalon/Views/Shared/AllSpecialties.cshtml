@@ -1,0 +1,11 @@
+@using HairSalonApp.Models;
+@{
+  Layout = "_Layout";
+}
+
+<h2>All Current Specialties:</h2>
+
+@foreach(var specialty in Model)
+{
+  <h3> <a href="/specialties/details/@specialty.GetId()">@specialty.GetSpecialty()</a> </h3>
+}

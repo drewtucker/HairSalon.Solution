@@ -3,11 +3,8 @@
 @{
   Layout = "_Layout";
 }
-    <div class="container">
-      <div class="jumbotron">
-        <h1>All Stylists</h1>
 
-      </div>
+  <h2>All Stylists:</h2>
       @if (Model != null)
       {
         foreach(Stylist stylist in Stylist.GetAll())
