@@ -94,6 +94,22 @@ namespace HairSalonApp.Tests
       testStylist.Delete();
       List<Stylist> testList2 = new List<Stylist> {};
       CollectionAssert.AreEqual(testList2, Stylist.GetAll());
+    }
+
+    [TestMethod]
+    public void AddSpecialty_AddsSpecialtyToStylist()
+    {
+      Stylist testStylist = new Stylist("Jim", 2067130144, "Jim@gmail.com", 4, 1);
+      testStylist.Save();
+
+      Specialty testSpecialty = new Specialty("Men's haircuts");
+      testSpecialty.Save();
+
+      testStylist.AddSpecialty(testSpecialty);
+      List<Specialty> result = testStylist.GetSpecialties();
+      List<Specialty> testList = new List<Specialty> {testSpecialty};
+
+      CollectionAssert.AreEqual(testList, result);
 
     }
 

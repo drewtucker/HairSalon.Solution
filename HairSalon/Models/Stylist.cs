@@ -240,6 +240,37 @@ namespace HairSalonApp.Models
       }
    }
 
+   //RETURNS A LIST OF ALL SPECIALTIES ASSIGNED TO A STYLIST
+   public List<Specialty> GetSpecialties()
+   {
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+     var cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"SELECT specialties.* FROM stylists
+        JOIN stylists_specialties ON (stylists.id = stylists_specialties.stylist_id)
+        JOIN specialties ON (stylists_specialties.specialty_id = specialties.id)
+        WHERE stylists.id = @SpecialtyId;";
+
+     MySqlParameter specialtyIdParameter = new MySqlParameter("@SpecialtyId", _id);
+     cmd.Parameters.Add(specialtyIdParameter);
+
+     var rdr = cmd.ExecuteReader() as MySqlDataReader;
+     List<Specialty> specialties = new List<Specialty>{};
+     while(rdr.Read())
+     {
+       int specialtyId = rdr.GetInt32(0);
+       string specialty = rdr.GetString(1);
+       Specialty newSpecialty = new Specialty(specialty, specialtyId);
+       specialties.Add(newSpecialty);
+     }
+     conn.Close();
+      if(conn != null)
+      {
+        conn.Dispose();
+      }
+      return specialties;
+    }
+
    //EDITS THIS STYLIST IN THE DATABASE
    public void Edit(string newName, int newPhoneNumber, string newEmail)
    {
