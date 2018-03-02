@@ -103,6 +103,39 @@ namespace HairSalonApp.Models
       }
     }
 
+    public List<Stylist> GetStylists()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT stylists.* FROM specialties
+        JOIN stylists_specialties ON (specialty.id = stylists_specialties.specialty_id)
+        JOIN stylists ON (stylists_specialties.stylist_id = stylists.id)
+        WHERE specialties.id = @SpecialtyId;";
+
+      MySqlParameter specialtyIdParameter = new MySqlParameter("@SpecialtyId", _id);
+      cmd.Parameters.Add(specialtyIdParameter);
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      List<Stylist> stylists = new List<Stylist>{};
+
+      while(rdr.Read())
+      {
+        int stylistId = rdr.GetInt32(0);
+        string stylistName = rdr.GetString(1);
+        int stylistPhoneNumber = rdr.GetInt32(2);
+        string stylistEmail = rdr.GetString(3);
+        int stylistExperience = rdr.GetInt32(4);
+        Stylist newStylist = new Stylist(stylistName, stylistPhoneNumber, stylistEmail, stylistExperience, stylistId);
+        stylists.Add(newStylist);
+      }
+      conn.Close();
+      if(conn != null)
+      {
+        conn.Dispose();
+      }
+      return stylists;
+    }
+
     public void Save()
     {
       MySqlConnection conn = DB.Connection();
@@ -147,6 +180,36 @@ namespace HairSalonApp.Models
      }
      return newSpecialty;
     }
+
+    public void Delete()
+     {
+       MySqlConnection conn = DB.Connection();
+       conn.Open();
+       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+       cmd.CommandText = @"DELETE FROM specialties WHERE id = @thisId;";
+       MySqlParameter thisId = new MySqlParameter ("@thisId", _id);
+       cmd.Parameters.Add(thisId);
+       cmd.ExecuteNonQuery();
+       conn.Close();
+       if(conn != null)
+       {
+         conn.Dispose();
+       }
+     }
+
+     public static void DeleteAll()
+     {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM specialties;";
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if(conn != null)
+      {
+        conn.Dispose();
+      }
+     }
 
 
 

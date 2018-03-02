@@ -96,6 +96,7 @@ namespace HairSalonApp.Models
       _id = newId;
     }
 
+    //RETURNS A LIST OF ALL STYLISTS CURRENT IN THE DATABASE
     public static List<Stylist> GetAll()
     {
       List<Stylist> allStylists = new List<Stylist>{};
@@ -122,6 +123,7 @@ namespace HairSalonApp.Models
       return allStylists;
     }
 
+    //RETURNS A LIST OF ALL CLIENTS ASSIGNED TO THIS PARTICULAR STYLIST
     public List<Client> GetAllClients()
     {
       List<Client> stylistClients = new List<Client>();
@@ -153,6 +155,7 @@ namespace HairSalonApp.Models
       return stylistClients;
     }
 
+    //SAVES A STYLIST IN THE DATABASE
     public void Save()
     {
       MySqlConnection conn = DB.Connection();
@@ -181,6 +184,7 @@ namespace HairSalonApp.Models
       }
     }
 
+    //FINDS A SPECIFIC STYLIST
     public static Stylist Find(int id)
    {
      MySqlConnection conn = DB.Connection();
@@ -215,6 +219,28 @@ namespace HairSalonApp.Models
      return newStylist;
    }
 
+   //ADDS A SPECIALTY TO A STYLIST
+   public void AddSpecialty(Specialty newSpecialty)
+   {
+     MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO stylists_specialties (stylist_id, specialty_id) VALUES (@StylistId, @SpecialtyId);";
+
+      MySqlParameter stylist_id = new MySqlParameter("@StylistId", _id);
+      cmd.Parameters.Add(stylist_id);
+      MySqlParameter specialty_id = new MySqlParameter("@SpecialtyId", newSpecialty.GetId());
+      cmd.Parameters.Add(specialty_id);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+   }
+
+   //EDITS THIS STYLIST IN THE DATABASE
    public void Edit(string newName, int newPhoneNumber, string newEmail)
    {
      MySqlConnection conn = DB.Connection();
@@ -244,6 +270,7 @@ namespace HairSalonApp.Models
      }
    }
 
+   //DELETES THIS PARTICULAR STYLIST
    public void Delete()
     {
       MySqlConnection conn = DB.Connection();
@@ -260,6 +287,7 @@ namespace HairSalonApp.Models
       }
     }
 
+    //DELETES *ALL* STYLISTS IN THE DATABASE
     public static void DeleteAll()
     {
      MySqlConnection conn = DB.Connection();
