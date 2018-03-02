@@ -113,6 +113,22 @@ namespace HairSalonApp.Tests
 
     }
 
+    [TestMethod]
+    public void GetSpecialties_ReturnsAllStylistSpecialties_SpecialtyList()
+    {
+      Stylist testStylist = new Stylist("Jim", 2067130144, "Jim@gmail.com", 4, 1);
+      testStylist.Save();
+
+      Specialty testSpecialty = new Specialty("Men's haircuts");
+      testSpecialty.Save();
+
+      testStylist.AddSpecialty(testSpecialty);
+      List<Specialty> savedSpecialties = testStylist.GetSpecialties();
+      List<Specialty> testList = new List<Specialty> {testSpecialty};
+
+      CollectionAssert.AreEqual(testList, savedSpecialties);
+    }
+
 
 }
 
