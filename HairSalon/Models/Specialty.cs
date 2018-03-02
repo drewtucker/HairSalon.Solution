@@ -110,7 +110,7 @@ namespace HairSalonApp.Models
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = @"SELECT stylists.* FROM specialties
-        JOIN stylists_specialties ON (specialty.id = stylists_specialties.specialty_id)
+        JOIN stylists_specialties ON (specialties.id = stylists_specialties.specialty_id)
         JOIN stylists ON (stylists_specialties.stylist_id = stylists.id)
         WHERE specialties.id = @SpecialtyId;";
 

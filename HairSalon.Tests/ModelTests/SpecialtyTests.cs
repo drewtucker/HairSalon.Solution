@@ -59,5 +59,22 @@ namespace HairSalonApp.Tests
       Specialty foundSpecialty = Specialty.Find(testSpecialty.GetId());
       Assert.AreEqual(testSpecialty, foundSpecialty);
     }
+
+    [TestMethod]
+    public void AddStylist_AddsStylistToSpecialty_StylistList()
+    {
+      Specialty testSpecialty = new Specialty("Men's haircuts");
+      testSpecialty.Save();
+
+      Stylist testStylist = new Stylist("Jim", 2067130144, "Jim@gmail.com", 4, 1);
+      testStylist.Save();
+
+      testSpecialty.AddStylist(testStylist);
+
+      List<Stylist> result = testSpecialty.GetStylists();
+      List<Stylist> testList = new List<Stylist> {testStylist};
+      CollectionAssert.AreEqual(testList, result);
+
+    }
   }
 }
