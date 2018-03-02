@@ -11,7 +11,7 @@ namespace HairSalonApp.Models
     private string _specialty;
     private int _id;
 
-    public Specialty(string specialty, int Id = 0);
+    public Specialty(string specialty, int Id = 0)
     {
       _specialty = specialty;
       _id = Id;
@@ -60,7 +60,7 @@ namespace HairSalonApp.Models
       _id = newId;
     }
 
-    public List<Specialty> GetAll()
+    public static List<Specialty> GetAll()
     {
       List<Specialty> allSpecialties = new List<Specialty>{};
       MySqlConnection conn = DB.Connection();

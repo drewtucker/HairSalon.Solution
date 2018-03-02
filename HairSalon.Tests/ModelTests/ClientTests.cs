@@ -12,6 +12,8 @@ namespace HairSalonApp.Tests
     public void Dispose()
     {
       Client.DeleteAll();
+      Stylist.DeleteAll();
+      Specialty.DeleteAll();
     }
 
     public ClientTests()

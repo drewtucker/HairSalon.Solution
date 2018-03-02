@@ -1,12 +1,3 @@
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.deps.json
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.runtimeconfig.json
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.runtimeconfig.dev.json
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.dll
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.pdb
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.1/HairSalon.csproj.CoreCompileInputs.cache
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.1/HairSalon.AssemblyInfo.cs
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.1/HairSalon.dll
-C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/obj/Debug/netcoreapp1.1/HairSalon.pdb
 /Users/Guest/Desktop/HairSalon.solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.deps.json
 /Users/Guest/Desktop/HairSalon.solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.runtimeconfig.json
 /Users/Guest/Desktop/HairSalon.solution/HairSalon/bin/Debug/netcoreapp1.1/HairSalon.runtimeconfig.dev.json
@@ -15,3 +6,12 @@ C:/Users/Dtuck/desktop/projects/C#/HairSalon.Solution/HairSalon/obj/Debug/netcor
 /Users/Guest/Desktop/HairSalon.solution/HairSalon/obj/Debug/netcoreapp1.1/HairSalon.AssemblyInfo.cs
 /Users/Guest/Desktop/HairSalon.solution/HairSalon/obj/Debug/netcoreapp1.1/HairSalon.dll
 /Users/Guest/Desktop/HairSalon.solution/HairSalon/obj/Debug/netcoreapp1.1/HairSalon.pdb
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\bin\Debug\netcoreapp1.1\HairSalon.deps.json
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\bin\Debug\netcoreapp1.1\HairSalon.runtimeconfig.json
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\bin\Debug\netcoreapp1.1\HairSalon.runtimeconfig.dev.json
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\obj\Debug\netcoreapp1.1\HairSalon.csproj.CoreCompileInputs.cache
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\obj\Debug\netcoreapp1.1\HairSalon.AssemblyInfo.cs
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\obj\Debug\netcoreapp1.1\HairSalon.dll
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\obj\Debug\netcoreapp1.1\HairSalon.pdb
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\bin\Debug\netcoreapp1.1\HairSalon.dll
+C:\Users\Dtuck\Desktop\projects\C#\HairSalon.Solution\HairSalon\bin\Debug\netcoreapp1.1\HairSalon.pdb
