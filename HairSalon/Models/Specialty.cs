@@ -60,6 +60,7 @@ namespace HairSalonApp.Models
       _id = newId;
     }
 
+    //MAIN FUNCTIONS
     public static List<Specialty> GetAll()
     {
       List<Specialty> allSpecialties = new List<Specialty>{};

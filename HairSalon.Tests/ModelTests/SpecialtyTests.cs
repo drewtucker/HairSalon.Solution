@@ -38,5 +38,26 @@ namespace HairSalonApp.Tests
       List<Specialty> testList = new List<Specialty> {testSpecialty, testSpecialty2};
       CollectionAssert.AreEqual(testList, result);
     }
+
+    [TestMethod]
+    public void Save_DatabaseAssignsIdToSpecialty_Id()
+    {
+      Specialty testSpecialty = new Specialty("Men's haircuts");
+      testSpecialty.Save();
+      Specialty savedSpecialty = Specialty.GetAll()[0];
+      int result = savedSpecialty.GetId();
+      int testId = testSpecialty.GetId();
+      Assert.AreEqual(testId, result);
+    }
+
+    [TestMethod]
+    public void Find_FindsSpecialtyInDatabase_Specialty()
+    {
+      Specialty testSpecialty = new Specialty("Men's haircuts");
+      testSpecialty.Save();
+
+      Specialty foundSpecialty = Specialty.Find(testSpecialty.GetId());
+      Assert.AreEqual(testSpecialty, foundSpecialty);
+    }
   }
 }
