@@ -272,12 +272,12 @@ namespace HairSalonApp.Models
     }
 
    //EDITS THIS STYLIST IN THE DATABASE
-   public void Edit(string newName, int newPhoneNumber, string newEmail)
+   public void Edit(string newName, int newPhoneNumber, string newEmail, int newExperience)
    {
      MySqlConnection conn = DB.Connection();
      conn.Open();
      var cmd = conn.CreateCommand() as MySqlCommand;
-     cmd.CommandText = @"UPDATE stylists SET name = @newName, phone_number = @phone_number, email = @email WHERE id = @searchId;";
+     cmd.CommandText = @"UPDATE stylists SET name = @newName, phone_number = @phone_number, email = @email, experience = @experience WHERE id = @searchId;";
 
      MySqlParameter searchId = new MySqlParameter("@searchId", _id);
      cmd.Parameters.Add(searchId);
@@ -290,10 +290,14 @@ namespace HairSalonApp.Models
 
      MySqlParameter email = new MySqlParameter("@email", newEmail);
      cmd.Parameters.Add(email);
+
+     MySqlParameter experience = new MySqlParameter("@experience", newExperience);
+     cmd.Parameters.Add(experience);
      cmd.ExecuteNonQuery();
      _name = newName;
      _phoneNumber = newPhoneNumber;
      _email = newEmail;
+     _experience = newExperience;
      conn.Close();
      if (conn != null)
      {

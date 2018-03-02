@@ -188,12 +188,12 @@ namespace HairSalonApp.Models
       return newStylist;
     }
 
-    public void Edit(string newName, int newPhoneNumber)
+    public void Edit(string newName, int newPhoneNumber, int newStylistId)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE clients SET name = @newName, phone_number = @phone_number WHERE id = @searchId;";
+      cmd.CommandText = @"UPDATE clients SET name = @newName, phone_number = @phone_number, stylist_id = @newStylistId WHERE id = @searchId;";
 
       MySqlParameter searchId = new MySqlParameter("@searchId", _id);
       cmd.Parameters.Add(searchId);
@@ -203,9 +203,13 @@ namespace HairSalonApp.Models
 
       MySqlParameter phoneNumber = new MySqlParameter("@phone_number", newPhoneNumber);
       cmd.Parameters.Add(phoneNumber);
+
+      MySqlParameter stylistId = new MySqlParameter("@newStylistId", newStylistId);
+      cmd.Parameters.Add(stylistId);
       cmd.ExecuteNonQuery();
       _name = newName;
       _phoneNumber = newPhoneNumber;
+      _stylistId = newStylistId;
       conn.Close();
       if (conn != null)
       {
@@ -226,7 +230,7 @@ namespace HairSalonApp.Models
       if(conn != null)
       {
         conn.Dispose();
-      } 
+      }
     }
 
     public static void DeleteAll()

@@ -33,17 +33,45 @@ namespace HairSalonApp.Controllers
       }
 
       [HttpGet("/stylists/details/{id}")]
-        public ActionResult StylistDetails(int id)
-        {
-            return View(Stylist.Find(id));
-        }
+      public ActionResult StylistDetails(int id)
+      {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Stylist selectedStylist = Stylist.Find(id);
+        List<Specialty> stylistSpecialties = selectedStylist.GetSpecialties();
+        List<Specialty> allSpecialties = Specialty.GetAll();
+        model.Add("selectedStylist", selectedStylist);
+        model.Add("stylistSpecialties", stylistSpecialties);
+        model.Add("allSpecialties", allSpecialties);
+        return View(model);
+      }
 
+      [HttpGet("/stylists/edit/{id}")]
+      public ActionResult EditStylistForm(int id)
+      {
+        Stylist thisStylist = Stylist.Find(id);
+        return View("EditStylist", thisStylist);
+      }
+
+      [HttpPost("/stylists/edit/{id}")]
+      public ActionResult EditStylist(int id)
+      {
+        Stylist thisStylist = Stylist.Find(id);
+        thisStylist.Edit(Request.Form["edit-stylist-name"], Int32.Parse(Request.Form["edit-stylist-phone"]), Request.Form["edit-stylist-email"], Int32.Parse(Request.Form["edit-stylist-experience"]));
+        return RedirectToAction("AllStylists");
+      }
 
       [HttpPost("/stylists/delete/{id}")]
       public ActionResult DeleteStylist(int id)
       {
         Stylist thisStylist = Stylist.Find(id);
         thisStylist.Delete();
+        return RedirectToAction("AllStylists");
+      }
+
+      [HttpPost("/stylists/delete/all")]
+      public ActionResult DeleteAllStylists()
+      {
+        Stylist.DeleteAll();
         return RedirectToAction("AllStylists");
       }
 }
