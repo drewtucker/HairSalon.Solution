@@ -14,6 +14,17 @@ namespace HairSalonApp.Controllers
         return View("AllClients", allClients);
       }
 
+      [HttpGet("/clients/details/{id}")]
+      public ActionResult ClientDetails(int id)
+      {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Client selectedClient = Client.Find(id);
+        Stylist clientStylist = selectedClient.GetStylist();
+        model.Add("selectedClient", selectedClient);
+        model.Add("clientStylist", clientStylist);
+        return View(model);
+      }
+
       [HttpGet("/clients/new")]
       public ActionResult NewClient()
       {
@@ -35,8 +46,12 @@ namespace HairSalonApp.Controllers
       [HttpGet("/clients/edit/{id}")]
       public ActionResult EditClientForm(int id)
       {
-        Client thisClient = Client.Find(id);
-        return RedirectToAction("AllClients", thisClient);
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Client selectedClient = Client.Find(id);
+        List<Stylist> allStylists = Stylist.GetAll();
+        model.Add("selectedClient", selectedClient);
+        model.Add("allStylists", allStylists);
+        return View("EditClient", model);
       }
 
       [HttpPost("/clients/edit/{id}")]

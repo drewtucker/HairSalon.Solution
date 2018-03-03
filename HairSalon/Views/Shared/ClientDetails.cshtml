@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Details for this Client:</h1>
+@if (Model != null)
+{
+  <h3>@Model["selectedClient"].GetName()</h3>
+  <h4>Phone #: @Model["selectedClient"].GetPhoneNumber()</h4>
+
+  <hr>
+  <h3>Stylist: <a href="/stylists/details/@Model["clientStylist"].GetId()">@Model["clientStylist"].GetName()</a></h3>
+  <hr>
+<a href="/clients/edit/@Model["selectedClient"].GetId()">Edit this Client</a>
+  <hr>
+  <form action="/clients/delete/@Model["selectedClient"].GetId()" method="post"><button type="submit" class="btn btn-danger" name="deleteClient">Drop this Client</button></form>
+}

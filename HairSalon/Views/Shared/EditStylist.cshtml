@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>Edit @Model.GetName()</h2>
+<form action="/stylists/edit/@Model.GetId()" method="post">
+  <label for="edit-stylist-name">New Stylist's Name:</label>
+  <input id="edit-stylist-name" type="text" name="edit-stylist-name" placeholder="First and Last">
+  <br>
+  <label for="edit-stylist-phone">New Stylist's Phone Number:</label>
+  <input id="edit-stylist-phone" type="text" name="edit-stylist-phone" placeholder="Ex: 2067130144" >
+  <br>
+  <label for="edit-stylist-email">New Stylist's Email:</label>
+  <input id="edit-stylist-email" type="text" name="edit-stylist-email" placeholder="Ex: chuckgreen@gmail.com">
+  <br>
+  <label for="edit-stylist-experience">How many years of Experience?:</label>
+  <input id="edit-stylist-experience" type="text" name="edit-stylist-experience">
+  <br>
+  <button class="btn btn-info" type="submit">Update Stylist</button>
+
+</form>

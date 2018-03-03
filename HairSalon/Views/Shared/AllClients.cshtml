@@ -10,12 +10,11 @@
       {
         foreach(var client in Client.GetAll())
         {
-          <h4><strong>@client.GetName()</strong> </h4>
-          <h4>Phone #: @client.GetPhoneNumber()</h4>
+          <h4><strong><a href="/clients/details/@client.GetId()">@client.GetName()</a></strong> </h4>
           <br>
-          <h5>Stylist: @client.GetStylist().GetName()</h5>
-          <form action="/clients/delete/@client.GetId()" method="post"><button type="submit" name="deleteClient">Delete this Client</button></form>
+          <form action="/clients/delete/@client.GetId()" method="post"><button type="submit" class="btn btn-danger" name="deleteClient">Delete this Client</button></form>
           <hr>
         }
       }
-<a href="/clients/new">Add a Client</a>
+
+      <form action="/clients/delete/all" method="post"><button type="submit" class="btn btn-danger" name="deleteClient">Delete ALL Clients</button></form>

@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+<h2>Edit @Model["selectedClient"].GetName()</h2>
+<form action="/clients/edit/@Model["selectedClient"].GetId()" method="post">
+  <label for="edit-clientName">New Name: </label>
+  <input type="text" name="edit-clientName" required>
+  <hr>
+  <label for="edit-clientNumber">New Phone Number: </label>
+  <input type="text" name="edit-clientNumber" required>
+  <hr>
+  <label for="edit-assignedStylist">Assign to New Stylist:</label>
+  <select name="edit-assignedStylist" required>
+
+      @foreach (var stylist in @Model["allStylists"])
+      {
+        <option value="@stylist.GetId()">@stylist.GetName()</option>
+      }
+
+  </select>
+  <hr>
+  <button type="submit" class="btn btn-info">Update Client</button>
+
+</form>

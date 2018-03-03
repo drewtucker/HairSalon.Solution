@@ -6,29 +6,37 @@
         <h1>Details for this Stylist:</h1>
         @if (Model != null)
         {
-          <h3>@Model.GetName()</h3>
-          <h4>Phone #: @Model.GetPhoneNumber()</h4>
-          <h4>Email: @Model.GetEmail()</h4>
-          <h4>@Model.GetExperience() years experience</h4>
-
+          <h3>@Model["selectedStylist"].GetName()</h3>
+          <h4>Phone #: @Model["selectedStylist"].GetPhoneNumber()</h4>
+          <h4>Email: @Model["selectedStylist"].GetEmail()</h4>
+          <h4>@Model["selectedStylist"].GetExperience() years experience</h4>
+          <br>
+          <a href="/stylists/edit/@Model["selectedStylist"].GetId()">Edit this Stylist</a>
           <h3>Clients:</h3>
 
-          @foreach(var client in Model.GetAllClients())
+          @foreach(var client in Model["stylistClients"])
           {
-            <h4><em>@client.GetName()</em></h4>
-            <h5>Phone #: @client.GetPhoneNumber()</h5>
+            <h4><em><a href="/clients/details/@client.GetId()">@client.GetName()</a></em></h4>
             <br>
-            <form action="/clients/delete/@client.GetId()" method="post"><button type="submit" name="deleteClient">Drop this Client</button></form>
+            <form action="/clients/delete/@client.GetId()" method="post"><button type="submit" class="btn btn-danger" name="deleteClient">Drop this Client</button></form>
           }
         }
         <hr>
-        <a href="/clients/new">Add a Client</a>
-        <hr>
-        <a href="/">Back to Main</a>
+
+        <h4>Add a Specialty to this Stylist:</h4>
+        <form action="/stylists/@Model["selectedStylist"].GetId()/specialties/new" method="post">
+          <label for="specialty-id">Select a Specialty</label>
+          <select name="specialty-id">
+            @foreach(var specialty in @Model["allSpecialties"])
+            {
+              <option value="@specialty.GetId()">@specialty.GetSpecialty()</option>
+            }
+          </select>
+          <button type="submit" class="btn btn-info">Add</button>
+        </form>
         <hr>
 
-
-        <form action="/stylists/delete/@Model.GetId()" method="post">
-          <button type="submit" name="deleteStylist">Fire this Stylist</button>
+        <form action="/stylists/delete/@Model["selectedStylist"].GetId()" method="post">
+          <button type="submit" class="btn btn-danger" name="deleteStylist">Fire this Stylist</button>
         </form>
         <hr>
