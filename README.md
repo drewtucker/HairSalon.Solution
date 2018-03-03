@@ -20,16 +20,19 @@ A website that allows users to enter a new stylist with relevant information, su
 
 * If a new Stylist or Client is entered without all form fields filled out, user will then be prompted to enter the relevant info. Input- Name: "", Phone Number: "", Result: "Please fill out all fields."
 
-* Users will be given the option of deleting Stylists or Clients.
+* Users will be given the option of deleting/editing Stylists or Clients.
+
+* Users can add a Specialty to apply to a Stylist. Each Specialty can be applied to multiple Stylists, and multiple Specialties can be applied to one Stylist.
 
 ## Setup/Installation Requirements
 (Requires Microsoft .NET Framework & MAMP)
 
 # In MYSQL
-> CREATE DATABASE drew_tucker;
-> USE drew_tucker;
-> CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255), phone_number INT(11), email VARCHAR(255), experience INT(3));
-> CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), phone_number INT(11));
+* CREATE DATABASE drew_tucker;
+* USE drew_tucker;
+* CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255), phone_number INT(11), email VARCHAR(255), experience INT(3));
+* CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR(255), phone_number INT(11));
+* CREATE TABLE stylists_specialties (id serial PRIMARY KEY, stylist_id INT, specialty_id INT);
 
 
 1. Clone this repository from GitHub.
